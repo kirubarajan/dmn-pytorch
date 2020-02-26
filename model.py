@@ -28,7 +28,7 @@ class DMN(nn.Module):
         self.z_dim = config.s_rnn_hdim * 4
 
         # rnn layers
-        self.s_rnn = nn.GRU(self.s_rnn_idim, config.s_rnn_hdim, batch_first=True)
+        self.s_rnn = nn.GRU(self.s_rnn_idim, config.s_rnn_hdim, batch_first=True, bidirectional=True)
         self.q_rnn = nn.GRU(self.q_rnn_idim, config.q_rnn_hdim, batch_first=True, bidirectional=True)
         self.e_cell = nn.GRUCell(self.e_cell_idim, config.e_cell_hdim)
         self.m_cell = nn.GRUCell(self.m_cell_idim, config.m_cell_hdim)
