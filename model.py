@@ -72,8 +72,7 @@ class DMN(nn.Module):
         return params
     
     def init_rnn_h(self, batch_size):
-        return Variable(torch.zeros(
-            self.config.s_rnn_ln*1, batch_size, self.config.s_rnn_hdim)).cuda()
+        return Variable(torch.zeros(self.config.s_rnn_ln * 2, batch_size, self.config.s_rnn_hdim)).cuda()
 
     def init_cell_h(self, batch_size):
         return Variable(torch.zeros(batch_size, self.config.s_rnn_hdim)).cuda()
