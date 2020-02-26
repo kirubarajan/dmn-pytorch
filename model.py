@@ -28,8 +28,8 @@ class DMN(nn.Module):
         self.z_dim = config.s_rnn_hdim * 4
 
         # rnn layers
-        self.s_rnn = nn.GRU(self.s_rnn_idim, config.s_rnn_hdim, batch_first=True, bidirectional=True)
-        self.q_rnn = nn.GRU(self.q_rnn_idim, config.q_rnn_hdim, batch_first=True, bidirectional=True)
+        self.s_rnn = nn.GRU(self.s_rnn_idim, config.s_rnn_hdim, batch_first=True)
+        self.q_rnn = nn.GRU(self.q_rnn_idim, config.q_rnn_hdim, batch_first=True)
         self.e_cell = nn.GRUCell(self.e_cell_idim, config.e_cell_hdim)
         self.m_cell = nn.GRUCell(self.m_cell_idim, config.m_cell_hdim)
         self.a_cell = nn.GRUCell(self.a_cell_idim, config.a_cell_hdim)
@@ -72,7 +72,7 @@ class DMN(nn.Module):
         return params
     
     def init_rnn_h(self, batch_size):
-        return Variable(torch.zeros(self.config.s_rnn_ln * 2, batch_size, self.config.s_rnn_hdim)).cuda()
+        return Variable(torch.zeros(self.config.s_rnn_ln * 1, batch_size, self.config.s_rnn_hdim)).cuda()
 
     def init_cell_h(self, batch_size):
         return Variable(torch.zeros(batch_size, self.config.s_rnn_hdim)).cuda()
