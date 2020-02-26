@@ -37,10 +37,10 @@ class DMN(nn.Module):
         # linear layers
         # self.z_sq = nn.Linear(config.s_rnn_hdim, config.q_rnn_hdim, bias=False)
         # self.z_sm = nn.Linear(config.s_rnn_hdim, config.m_cell_hdim, bias=False)
-        self.out = nn.Linear(config.m_cell_hdim, 
-                config.word_vocab_size, bias=False)
+        self.out = nn.Linear(config.m_cell_hdim, config.word_vocab_size, bias=False)
         self.g1 = nn.Linear(self.z_dim, config.g1_dim)
-        self.g2 = nn.Linear(config.g1_dim, 1)
+        self.g2 = nn.Linear(config.g1_dim, 200)
+        self.g3 = nn.Linear(200, 1)
 
         # initialization
         self.init_word_embed(idx2vec)
